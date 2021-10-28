@@ -1,0 +1,23 @@
+{% extends 'base.html'%}
+{% block title %}Update post {% endblock %}
+{% block content %}
+{% if user.is_authenticated %}
+
+
+    <div class="container">
+        <div class="row justify-content-center">
+         <div class="form-group col-md-4 col-md-offset-5 align-center ">
+    <form method="POST">
+        {% csrf_token %}
+        <h1>Update Post</h1>
+        {{form.as_p}}
+<input type="submit" class="btn btn-success" name="Update" value="Update">
+    </form>
+</div>
+</div>
+</div>
+{% else %}
+<h2>Page not Found</h2>
+{% endif %}
+    {% endblock %}
+ 
