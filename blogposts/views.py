@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Post, Category, Comment
+from .models import Post, Comment
 from .forms import PostForm, CommentForm
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView
@@ -17,11 +17,6 @@ class Index(ListView):
     model = Post
     template_name = 'index.html'
 
-    def get_context_data(self, *args, **kwargs):
-        cat_menu = Category.objects.all()
-        context = super(Index, self).get_context_data(*args, **kwargs)
-        context["cat_menu"] = cat_menu
-        return context
 
 class ArticleView(DetailView):
     model = Post
@@ -46,15 +41,7 @@ class DeletePost(DeleteView):
     template_name = 'delete.html'
     success_url = reverse_lazy('index')
 
-def CategoryView(request, categorys):
-    category_posts = Post.objects.filter(category=categorys.replace('-', ' '))
-    return render(request, 'category.html', {'categorys': categorys.title().replace('-', ' '), 'category_posts' : category_posts})
 
-def get_context_data(self, *args, **kwargs):
-    cat_menu = Category.objects.all()
-    context = super(CategoryView, self).get_get_context_data(*args, **kwargs)        
-    context["cat_menu"] = cat_menu
-    return context
 
 
 class CommentView(CreateView):

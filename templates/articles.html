@@ -30,7 +30,7 @@
                             <a href="{{ post.author.profile.instagram_url }}" target="_blank">Instagram </a>|<br>
                             <a href="{% url 'index' %}" class="card-link">Back</a>
                         </small>
-<div class="card-footer">
+                        <div class="card-footer">
                         <h6> Comments...</h6>
                         {% if not post.comments.all %}
                         No comments yet... <a href="{% url 'comments' post.pk %}">Leave a comment</a>

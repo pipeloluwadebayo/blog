@@ -10,7 +10,6 @@ class Post(models.Model):
     title_tag = models.CharField(max_length=255)
     author = models.ForeignKey(User, on_delete=models.CASCADE, blank=False)
     created_at = models.DateTimeField(default=datetime.now, blank=True)
-    category = models.CharField(max_length=255, null=True, blank=True)
     snippet = models.CharField(max_length=255, default= "Read More...")
     image = models.ImageField(null=True, blank=True, upload_to="images/")
     body = models.TextField(null=True, blank=True)
@@ -22,21 +21,9 @@ class Post(models.Model):
         return reverse('index')
 
 
-class Category(models.Model):
-    name = models.CharField(max_length=255)
-
-
-
-    def __str__(self):
-        return self.name
-
-    def  get_absolute_url(self):
-        return reverse('index')
-
 
 class Profile(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
-    profile_pic = models.ImageField(null=True, blank=True, upload_to="profile/")
     website_url = models.CharField(max_length=255, null=True, blank=True)
     github_url = models.CharField(max_length=255, null=True, blank=True)
     linkedin_url = models.CharField(max_length=255, null=True, blank=True)
