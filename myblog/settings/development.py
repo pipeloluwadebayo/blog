@@ -1,0 +1,1 @@
+from myblog.settings.common import *
